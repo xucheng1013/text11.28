@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>预约</title>
+		<link rel="stylesheet" href="../css/rcswitcher.min.css" />
+		<link rel="stylesheet" href="../css/ordered.css" />
+		<!--<script type="text/javascript">
+		  	window.onresize = function() {
+				var o =  document.documentElement.clientWidth > 1300 ? 1300 : document.documentElement.clientWidth;
+				var oHtml = document.getElementsByTagName("html")[0];
+				oHtml.style.fontSize = o /7.5 + "px";
+			}
+		</script>-->
+		<script src="../js/jquery.min.js"></script>
+		<style type="text/css">
+			.swraper.flat .stoggler.on{
+				transform: translateX(-58px)!important;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+		<section class="order">
+			<div class="orderedAddress">
+				
+				<div class="iphone">
+					<div class="browser">
+				        <!--选择地区-->
+				        <section class="express-area">
+				            <a id="expressArea" href="javascript:void(0)">
+				                <dl>
+				                    <dt>选择地区</dt>
+				                    <dd class="address"></dd>
+				                </dl>
+				            </a>
+				        </section>
+				        <!--选择地区弹层-->
+				        <section id="areaLayer" class="express-area-box">
+				            <header>
+				                <h3>选择地区</h3>
+				                <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+				                <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+				            </header>
+				            <article id="areaBox">
+				                <ul id="areaList" class="area-list"></ul>
+				            </article>
+				        </section>
+				        <!--遮罩层-->
+				        <div id="areaMask" class="mask"></div>
+				        <script src="../js/jquery.area.js"></script>
+				    </div>
+				</div>
+				
+				
+				</div>
+			<div class="orderedTelephone ">
+				<span>联系方式<span class="tip2">&nbsp;*请输入正确的电话号码</span></span>
+				<input class="telephone " type="email" placeholder="请输入你常用的联系方式" required="required"/>
+				
+			</div>
+			<div class="orderedContact ">
+				<span>联系人<span class="tip3">&nbsp;*联系人不能为空</span></span>
+				<input class="contact " placeholder="请输入你的昵称或者名字" />
+				
+			</div>
+			<div class="orderedCheckCode ">
+				<span>验证码</span>
+				<input class="checkCode " placeholder="请输入验证码" />
+				
+				<button class="getCode" disabled="disabled">发送验证码</button>
+			</div>
+			
+			<div class="orderedServide">
+				<span class="service">服务类型<span class="tip4">&nbsp;*请选择服务类型</span></span>
+				<span class="serviceType">请选择服务类型</span>
+				
+			</div>
+			<div class="orderedIsConnect ">
+				<span class="IsConnect">是否连片</span>
+				<input type="radio" name="level" value="level1" style="display: none;">
+				<input type="checkbox" name="access_cp" value="access_cp" style="display: none;">  
+			</div>
+			<div class="orderedWorkarea ">
+				<span>作业面积<span class="tip7" style="color:#ed7119;font-size: 12px;">*可不填</span></span>
+				<div>
+					<input class="workarea " placeholder="请输入作业面积（亩）" />
+					
+				</div>
+				
+			</div>
+			<div class="orderedRemark">
+				<span>备注<span class="tip8" style="color:#ed7119;font-size: 12px;">*可不填</span></span>
+				<textarea class="remark" placeholder="请输入至多200个字" ></textarea>
+				
+			</div>
+			
+			<div class="comfirmOrder">
+				<button class="orderBtn" disabled="disabled">确&nbsp;定&nbsp;预&nbsp;约</button>
+				
+			</div>
+			<div style="width: 100%;height: 58px;"></div>
+		</section>
+		<!--服务类型弹出层区域-->
+				<section  class="typebox" >
+					 <!--弹出区内容层-->
+		            <header>
+		                <h3>选择服务类型</h3>
+		                <a  class="back" href="javascript:void(0)" title="返回" style="display: none;"></a>
+		                <a  class="closeservisType close" href="javascript:void(0)" title="关闭"></a>
+		            </header>
+		            <article >
+		                <ul id="servsType" class="area-list">
+		                	<!--<li onclick="selecttype('除虫');">除虫</li>
+		                	<li onclick="selecttype('除草');">除草</li>
+		                	<li onclick="selecttype('其他');">其他</li>-->
+		                	
+		                </ul>
+		            </article>
+		        </section>
+		        <!--弹出区遮罩层-->
+				<div class="checkServiceType">
+					
+				</div>
+				<!--服务类型弹出层区域结束-->
+		
+		
+		
+		
+		<!--点击确认弹出遮罩-->
+		<div class="orderMask">
+			<div class="main">
+				<p>您的预约已提交，请保持电话通畅，等待客服联系</p>
+				<button class="OK">确定</button>
+			</div>
+		</div>
+		<div class="yyorderMask ">
+			<div class="main">
+				<p>当前城市目前没有服务点，无法预约！</p>
+				<button class="yyOK">确定</button>
+			</div>
+		</div>
+		</div>
+		<!--底部跳转区域-->
+		<footer class="orderedFooter">
+			<a href="javascript:;" class="indexI">
+			<dl>
+				<dt><img src="../img/index_1.png" /></dt>
+				<dd>首页</dd>
+			</dl>
+			</a>
+			<a href="javascript:;" class="taocan">
+			<dl>
+				<dt><img src="../img/taocan_1.png" /></dt>
+				<dd>套餐</dd>
+			</dl>
+			</a>
+			<a >
+			<dl>
+				<dt><img src="../img/yuyue_2.png" /></dt>
+				<dd style="color: #0079fe;">预约</dd>
+			</dl>
+			</a>
+			<a href="javascript:;" class="personal">
+			<dl>
+				<dt><img src="../img/wo_1.png" /></dt>
+				<dd>我的</dd>
+			</dl>
+			</a>
+		</footer>
+		<!--底部跳转区域结束-->
+		
+		<script src="../js/distpicker.data.js"></script>
+	    <script src="../js/distpicker.js"></script>
+	    <script src="../js/rcswitcher.min.js"></script>
+	    <script src="../js/ordered - 副本.js"></script>
+	    <script>
+	    	$('input[type=checkbox]').rcSwitcher({
+                            // 默认值            // 描述
+ 
+			    theme: 'flat',          // light            滑动开关按钮的主题：'flat, light, dark, modern'    
+			    width: 80,              // 56  in 'px'          
+			    height: 26,             // 22
+			    blobOffset: 0,          // 2
+			    reverse: true,          // false            颠倒开关顺序
+			    onText: '是',          // 'ON'             ON状态时的文本
+			    offText: '否',          // 'OFF'            OFF状态时的文本
+			    inputs: true,           // false            显示相应的inputs
+			    autoFontSize: true,     // false            根据滑动开关按钮的高度自动调整字体大小
+			    autoStick: true         // false            自动放置在父元素中
+			}); 
+			//获得服务类型
+			$.ajax({
+				type:"get",
+				url:"http://192.168.100.17:8080/UAV/weixin/getServsType",
+				dataType:"json",
+				success:function(msg){
+					console.log(msg)
+					var obj=msg.result;
+					var html="";
+					for(var i=0;i<obj.length;i++){
+						html+='<li  onclick="selecttype('+obj[i].id+',\''+obj[i].service_type+'\');">'+obj[i].service_type+'</li>'
+					}
+					$("#servsType").html(html);
+				},
+				error:function(msg){
+					console.log(msg);
+				}
+			});
+	    </script>
+	    
+	</body>
+</html>

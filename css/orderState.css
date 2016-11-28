@@ -1,0 +1,134 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+}
+html{
+	background: #ebebeb;
+}
+body{
+	position: relative;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+button{
+	outline: none;
+}
+*{margin: 0;padding: 0;}
+header{
+	height: 120px;
+    background: #fff;
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+     -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+     -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+header .content{
+	width: 90%;
+    font-size: 14px;
+    color: #656565;
+}
+header .content p{
+	line-height: 30px;
+}
+header .content p button{
+	float: right;
+    color: #fff;
+    background: #ffa62e;
+    border: 0;
+    border-radius: 6px;
+    width: 20%;
+    height: 25px;
+    margin-top:2.5px;
+}
+section.section1{
+	height: 30%;
+    margin-top: 10px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    background: #fff;
+    padding-top: 5%;
+    padding-left: 8%;
+}
+.section1 .jindutiao{
+	float: left;
+    width: 6%;
+    height: 70%;
+    background: url(../img/jindutiao.png) no-repeat center center;
+    background-size:auto 100%;
+}
+.section1 .main{
+	width: 70%;
+    font-size: 14px;
+    color: #656565;
+    float: left;
+    height: 70%;
+    position: relative;
+    
+}
+.section1 .main p{
+	margin-left: 8%;
+}
+
+.orderMask{
+	display: none;
+	position: absolute;
+	left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 400;
+    
+}
+
+.orderMask .main{
+	width: 80%;
+    height: 20%;
+    background: #fff;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.orderMask .main .title{
+	color: #333;
+    font-size: 15px;
+    margin-top:7%;
+    margin-left: 8%;
+}
+.orderMask .main .footer{
+	overflow: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 12%;
+    width: 100%;
+}
+.orderMask .main button{
+	width: 24%;
+	font-size: 15px;
+    height: 24px;
+    border: 0;
+    float: right;
+    background: 0;
+}

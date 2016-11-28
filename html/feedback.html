@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>意见反馈</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/feedback.css" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<p>您有什么问题或意见想对我们说？</p>
+		</header>
+		<section class="title">
+			<span>您的主题:</span><input  type="text" class="titleInput"/>
+		</section>
+		<section class="content">
+			<textarea  type="text" placeholder="您的宝贵意见,就是我们进步的源泉" class="contentInput"/></textarea>
+		</section>
+		<p>(*＾-＾*)请详细描述您遇到的问题，有助于我们快速定位并解决问题，或留下您宝贵的建议或意见，我们会认真进行评估！</p>
+		<footer>
+			<button id="tijiao">问题提交</button>
+		</footer>
+		<div class="mask">
+			<div>
+				<p style="color: #333333;line-height: 43px;">感谢您的宝贵意见，会尽快给您答复！</p>
+				<button>确定</button>
+			</div>
+		</div>
+		<script>
+		//控制文本域字数
+		var str=""
+		$("textarea").keyup(function(){
+			console.log($(this).val().length)
+			if($(this).val().length>300){
+				str=$(this).val().substring(0,300);
+				$(this).val(str)
+			}
+			
+			//文本域最终值是str
+		});
+		
+		$("#tijiao").click(function(){
+			var openid=localStorage.getItem("openid");
+			var title=$(".titleInput").val();
+		//取出个人信息	
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/feekback/"+openid,
+			type: "post", 
+			data:{"title":title,"content":str},
+			dataType:"json",
+			//jsonp:"callback",
+			success: function(msg){
+				$(".mask").show();
+				console.log(msg);
+				
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				
+			}
+		});
+		
+		});
+		
+		$(".mask button").click(function(){
+			$(".mask").hide();
+			location.href="personalCenter.html";
+		})
+	</script>
+	</body>
+</html>

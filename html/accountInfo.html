@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>账号信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/accountInfo.css" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div >
+		<header>
+			<div class="touxiang">
+				<img src=""  class="touxingImg"/>
+			</div>
+		</header>
+		
+		<section class="section1">
+			<form>
+				<p><label for="nameInput"><span>昵称</span><input id="nameInput" type="text " value="" /></label></p>
+				<p><label for="truenameInput"><span>姓名</span><input id="truenameInput" type="text " value="" /></label></p>
+				<p><label for="sexInput"><span>性别</span><input id="sexInput" type="text " value="" /></label></p>
+				<div class="iphone">
+					<div class="browser">
+				        <!--选择地区-->
+				        <section class="express-area">
+				            <a id="expressArea" href="javascript:void(0)">
+				                <dl>
+				                    <dt>地址</dt>
+				                    <dd class="address"></dd>
+				                </dl>
+				            </a>
+				        </section>
+				        <!--选择地区弹层-->
+				        <section id="areaLayer" class="express-area-box">
+				            <header>
+				                <h3>选择地区</h3>
+				                <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+				                <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+				            </header>
+				            <article id="areaBox">
+				                <ul id="areaList" class="area-list"></ul>
+				            </article>
+				        </section>
+				        <!--遮罩层-->
+				        <div id="areaMask" class="mask"></div>
+				        <script src="../js/jquery.area.js"></script>
+				    </div>
+				</div>
+				<p><label for="teleInput"><span>联系方式</span><input id="teleInput" type="tel " value="" /></label></p>
+			</form>
+		</section>
+		<section class="section2">
+			<form>
+				<p><label for="emailInput"><span>邮箱</span><input id="emailInput" type="email" value="" /></label></p>
+				<p style="border-bottom: 1px solid #dddddd;"><label for="personalInput"><span>个人说明</span><input id="personalInput" type="text " value="" /></label></p>
+			</form>
+		</section>
+		</div>
+		<footer>
+			<button class="saveChanges">保存修改</button>
+			<button class="cancelEdit">取消编辑</button>
+		</footer>
+		<script src="../js/accountInfo.js"></script>
+		<script src="../js/distpicker.data.js"></script>
+	    <script src="../js/distpicker.js"></script>
+	    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    	
+	<script>
+         var openid=(localStorage.getItem("openid")||location.href.split("?")[1]);
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/home/"+openid,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				id=msg.result.openid;
+				console.log(msg);
+				console.log(id);
+				$(".touxingImg").attr("src",msg.result.headimgurl);
+				$('#nameInput').val(msg.result.nickname);
+				$("#truenameInput").val(msg.result.realname);
+				  var sex=msg.result.sex;
+		         if(sex=="1"){
+		         	sex="男";
+		         }else if(sex=="2"){
+		         	sex="女";
+		         }else{
+		         	sex="未知";
+		         }
+				$("#sexInput").val(sex);
+				$(".address").html(msg.result.province+"&nbsp;"+msg.result.city+"&nbsp;"+msg.result.area);
+				$("#teleInput").val(msg.result.phone);
+				$("#emailInput").val(msg.result.email);
+				$("#personalInput").val(msg.result.remark);
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		}); 
+		//照相或者从相册选择功能
+         $.ajax({
+            url : "./signature.php",
+            type : "post",
+           dataType : "json", //没有实名认证
+            data : {
+                url : location.href
+            }
+         }).done(function(data){//对应success,error对应fail
+         	
+                 wx.config({
+                    //debug:true,
+                    appId : data["appId"],
+                    timestamp : data["timestamp"],
+                    nonceStr : data["nonceStr"],
+                    signature : data["signature"],
+                    jsApiList : [
+                        "chooseImage"
+                    ]
+                 });
+                 wx.ready(function(){
+                    document.querySelector(".touxiang").onclick = function(){
+                        wx.chooseImage({
+                            count : 1,
+                            sourceType : ["album","camera"],
+                            success : function(res){
+                               // res.localIds 
+//                             var preview = document.querySelector(".touxiang");
+//                             preview.src = +res.localIds[0];
+//                             preview.style.backgroundSize = "cover";
+							$(".touxingImg").attr('src',res.localIds[0]);
+// 								preview.style.backgroundImage = "url("+res.localIds[0]+")";
+//                             preview.style.backgroundSize = "cover";
+
+                            }
+                        })
+                    }
+                 })
+         });
+    	//保存修改个人信息     
+        $(".saveChanges").click(function(){
+        	var openid=location.href.split("?")[1];
+        	var nickname=$("#nameInput").val();
+        	var headimgurl=$(".touxingImg").attr("src");//看照相之后会不会保存图片
+        	var sex=$("#sexInput").val();
+        	if(sex=="男"){sex=1}
+        	else if(sex=="女"){sex=2}
+        	else{sex=0};
+        	var province=$(".address").html().split("&nbsp;")[0];
+        	var city=$(".address").html().split("&nbsp;")[1];
+        	var area="";
+        	if($(".address").html().split("&nbsp;")[2]){
+        		area=$(".address").html().split("&nbsp;")[2];
+        	}else{
+        		area=""
+        	}
+        	var phone=$("#teleInput").val();
+        	var email=$("#emailInput").val();
+        	var remark=$("#personalInput").val();
+        	var realname=$("#truenameInput").val();
+        	$.ajax({
+				url:"http://192.168.100.17:8080/UAV/weixin/modifyuser",
+				type: "post", 
+				data:{
+					"openid":openid,
+					"nickname":nickname,
+					"headimgurl":headimgurl,
+					"sex":sex,
+					"realname":realname,
+					"province":province,
+					"city":city,
+					"area":area,
+					"phone":phone,
+					"email":email,
+					"remark":remark
+					},
+				dataType:"json",
+				//jsonp:"callback",
+				success: function(msg){
+					alert("正确")
+					console.log(msg);
+				}, //操作成功后的操作！msg是后台传过来的值
+				error:function(msg){
+					alert("错误")
+					console.log(msg);
+				}
+			}); 
+        });
+        //取消编辑
+        $(".cancelEdit").click(function(){
+        	location.reload();
+        });
+ 	</script>
+	</body>
+</html>

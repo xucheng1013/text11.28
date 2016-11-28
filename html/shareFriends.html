@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>分享好友</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/shareFriends.css" />
+		<!--<link rel="stylesheet" href="../css/msosh.min.css"  />分享插件-->
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<img src="../img/tuijianzhuce.png"  />
+		</header>
+		<section class="section1">
+			<p>推广期间通过邀请好友加入UAV，</p>
+			<p>我们将同时赠送您</p>
+			<p>价值百元优惠券</p>
+			<p class="activityAddress">活动网址:<input class="activityUrl" id="contents"  style="border: 0;background: #ccc;" readonly="readonly" value="http://www.xxsds.com"></p>
+		</section>
+		<section class="mask" onclick="clocktype()">
+			<img src="../img/fx.png"  style="width: 100%;"/>
+		</section>			
+		
+		<footer>
+			<!--<button class="copy" onClick="jsCopy();">复制</button>-->
+			<button class="share">分享给好友</button>
+		</footer>
+		
+		<!--<div class="msosh"></div>分享插件-->
+		
+		<div style="width: 100%;height: 30px;"></div>
+		<script src="../js/shareFriends.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    	
+	<script>
+        function jsCopy(){ 
+        	
+	        var e=document.getElementById("contents");//对象是contents 
+	        e.select(); //选择对象 
+	        document.execCommand("Copy"); //执行浏览器复制命令
+	    };
+	    
+	    /*关闭分享好友弹窗*/
+function clocktype() {
+	$(".mask").fadeOut();
+}
+
+/*打开分享好友弹窗*/
+
+         $.ajax({
+            url : "./signature.php",
+            type : "post",
+           dataType : "json", 
+            data : {
+                url : location.href
+            }
+         }).done(function(data){//对应success,error对应fail
+                 wx.config({
+                     // debug:true,
+                    appId : data["appId"],
+                    timestamp : data["timestamp"],
+                    nonceStr : data["nonceStr"],
+                    signature : data["signature"],
+                    jsApiList : [
+                        "onMenuShareQQ",
+                        "onMenuShareAppMessage",
+                        "onMenuShareTimeline"
+                    ]
+                 });
+                 wx.ready(function(){
+                    document.querySelector('.share').onclick = function () {
+					    wx.onMenuShareQQ({
+					      title: '推广优惠活动',
+					      desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+					      link: $(".activityUrl").val(),
+					      imgUrl: 'http://uav2222.applinzi.com/img/tuijianzhuce.png',
+					      success: function (res) {
+					        $(".mask").fadeOut();
+					      },
+					      cancel: function (res) {
+					      },
+					    });
+					    wx.onMenuShareAppMessage({
+					      title: '推广优惠活动',
+					      desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+					      link:  $(".activityUrl").val(),
+					      imgUrl: 'http://uav2222.applinzi.com/img/tuijianzhuce.png',
+					      success: function (res) {
+					        $(".mask").fadeOut();
+					      },
+					      cancel: function (res) {
+					      },
+					    });
+					    wx.onMenuShareTimeline({
+					      title: '推广优惠活动',
+					      desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+					      link:   $(".activityUrl").val(),
+					      imgUrl: 'http://uav2222.applinzi.com/img/tuijianzhuce.png',
+					      success: function (res) {
+					        $(".mask").fadeOut();
+					      },
+					      cancel: function (res) {
+					      },
+					    });
+					    $(".mask").fadeIn();
+					};
+					
+                 });
+         })
+ 	</script>
+	</body>
+</html>

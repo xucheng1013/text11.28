@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>执行中订单</title>
+		<link rel="stylesheet" href="../css/waitComfirmOrder.css" />
+		<script type="text/javascript" src="../js/publicJs.js"></script>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li><a href="waitComfirmOrder.html" >待确定订单</a></li>
+				<li><a href="#" class="waitComfirm">执行中订单</a></li>
+				<li><a href="waitPayOrder.html" >待支付订单</a></li>
+				<li><a href="hasPayOrder.html">已支付订单</a></li>
+			</ul>
+		</header>
+		<div class="main">
+			<!--<div class="order">
+				<p class="orderNumber">订单编号:40001231322<span>执行中</span></p>
+				<div class="detail">
+					<div class="detailLeft">
+						<p>订单面积:400亩</p>
+						<p>药品类型:敌敌畏...</p>
+					</div>
+					<div class="detailCenter">订单总额:<span>￥600</span></div>
+					<div class="detailRight">预约金额:<span>￥200</span></div>
+				</div>
+				<div class="hasPay"><p>实付:<span>￥200.00</span></p></div>
+				<div class="btns">
+					<button class="comfirmBtn">确认完成</button>
+					<button class="cancelBtn">查看详情</button>
+					
+				</div>
+			</div>-->
+		</div>
+		
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		//取出执行中订单
+		var openid=localStorage.getItem("openid");
+		var type="3";
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/orderlist/"+openid+"/"+type,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				console.log(msg);
+				var html="";
+                for (var i = 0; i < msg.result.length; i++){
+                    var obj = msg.result[i];
+                    if(!obj.estArea){obj.estArea=0}
+                    if(!obj.pesticideType){obj.pesticideType=""}
+                    if(obj.orderState=="800"){//6作业已完成的订单，在执行中不显示，在待支付中显示
+                    	html += '<div orderId='+obj.orderId+' class="order"><p class="orderNumber">订单编号:'+nonestr(obj.orderCode)+'<span>执行中</span></p><div class="detail" onclick="details('+obj.orderId+')"><div class="detailLeft"><p>订单面积:'+nonenum(obj.estArea)+'亩</p><p>药品类型:'+nonestr(obj.pesticideType)+'...</p></div><div class="detailCenter">订单总额:<span>￥'+nonenum(obj.orderNum)+'</span></div><div class="detailRight"><span>预付款:</span><span>￥'+nonenum(obj.orderTabNum)+'</span></div></div><div class="hasPay"><p>实付:<span>￥'+nonenum(obj.paid)+'</span></p></div><div class="btns"><button class="comfirmBtn" orderId='+obj.orderId+' totalfee='+obj.orderTabNum+' orderState='+obj.orderState+'>确认完成</button><button class="cancelBtn" orderId='+obj.orderId+' custname='+obj.custname+' custphone='+obj.custphone+' estArea='+obj.estArea+' orderAddress='+obj.orderAddress+' starttime= ' + obj.starttime + ' pesticideType='+obj.pesticideType+' uavtype='+obj.uavtype+' orderNum='+obj.orderNum+' paid='+obj.paid+' unpaidNum='+obj.unpaidNum+'>查看详情</button></div></div>'
+                    }                 
+                    if(obj.orderState=="300"||obj.orderState=="400"||obj.orderState=="500"||obj.orderState=="600"||obj.orderState=="700"){//4
+                    	html += '<div orderId='+obj.orderId+' class="order"><p class="orderNumber">订单编号:'+nonestr(obj.orderCode)+'<span>执行中</span></p><div class="detail" onclick="details('+obj.orderId+')"><div class="detailLeft"><p>订单面积:'+nonenum(obj.estArea)+'亩</p><p>药品类型:'+nonestr(obj.pesticideType)+'...</p></div><div class="detailCenter">订单总额:<span>￥'+nonenum(obj.orderNum)+'</span></div><div class="detailRight"><span>预付款:</span><span>￥'+nonenum(obj.orderTabNum)+'</span></div></div><div class="hasPay"><p>实付:<span>￥'+nonenum(obj.paid)+'</span></p></div><div class="btns"><button class="cancelBtn" starttime= "未作业" orderId='+obj.orderId+' custname='+obj.custname+' custphone='+obj.custphone+' estArea='+obj.estArea+' orderAddress='+obj.orderAddress+'  pesticideType='+obj.pesticideType+' uavtype='+obj.uavtype+' orderNum='+obj.orderNum+' paid='+obj.paid+' unpaidNum='+obj.unpaidNum+'>查看详情</button></div></div>'
+                    }
+                }
+                $(".main").html(html);
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		}); 
+	
+		//点击订单详情跳转到订单详情
+	$(document).on("click",".cancelBtn",function(){
+		var orderid=$(this).attr("orderId");		
+		details(orderid);
+	});
+	
+	
+	//点击确认完成
+	$(document).on("click",".comfirmBtn",function(){
+		var orderid=$(this).attr("orderId");
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/confirmcomplete/"+openid+"/"+orderid,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				console.log(msg);
+				
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		});
+	})
+	function details(id){
+		location.href="./detailOrder.html?id="+id+"&type=2";
+	}
+	</script>
+</html>

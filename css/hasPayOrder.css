@@ -1,0 +1,200 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+}
+html{
+	font-size: 100px;
+	background: #ebebeb;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+*{margin: 0;padding: 0;}
+input,button{outline: none;}
+header{
+	height: 50px;
+	background: #fff;
+	/*border-bottom: 1px solid #cccccc;*/
+	
+}
+header ul{
+	height: 100%;
+	width: 100%;
+	font-size: 0.14rem;
+}
+ul li{
+	list-style: none;
+	float: left;
+	width: 25%;
+	height: 100%;
+}
+header ul li a{
+	height: 100%;
+	list-style: none;
+	text-decoration: none;
+	color: #333;
+	display: block;
+	-webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	-webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+	 -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+	border-bottom: 1px solid #cccccc;
+	
+}
+header ul li a.waitComfirm{
+	border-bottom: 1px solid #e41c17;
+	background: url(../img/5.png) no-repeat center bottom;
+}
+
+.main .order{
+	border-bottom: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	background: #fff;margin-top: 0.1rem;
+   
+}
+.main .orderNumber{
+	    width: 95%;
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 0.14rem;
+    color: #666;
+    margin: 0 auto;
+    height: 0.3rem;
+    line-height: 0.3rem;
+	
+}
+.main .orderNumber span {
+    float: right;
+    font-size:12px;
+}
+.main .detail{
+	height:0.7rem ;
+	font-size: 12px;
+	width: 95%;
+	margin: 0 auto;
+	border-bottom: 1px solid #DDDDDD;
+}
+.main .detail .detailLeft{
+	float: left;
+	width: 38%;
+	line-height: 0.35rem;
+	color: #999;
+}
+.main .detail .detailCenter{
+	float: left;
+	width: 32%;
+	height: 100%;
+	color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.main .detail .detailCenter span{
+	
+	color: #323232;
+}
+.main .detail .detailRight{
+	float: left;
+	width: 30%;
+	height: 100%;
+	color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.main .detail .detailRight span{
+	color: #323232;
+}
+.main .hasPay{
+	height:0.3rem ;
+    line-height: 0.3rem;
+	font-size: 0.1rem;
+	width: 95%;
+	margin: 0 auto;
+	border-bottom: 1px solid #DDDDDD;
+}
+.main .hasPay p{
+	float: right;
+	height:0.3rem ;
+	font-size: 0.14rem;
+	margin: 0 auto;
+	color: #666;
+	line-height: 0.3rem;
+	
+}
+.main .hasPay .downTime{
+	float: left;
+	height:0.3rem ;
+	font-size: 0.1rem;
+	margin: 0 auto;
+	color: #666;
+	line-height: 0.3rem;
+	
+}
+.main .hasPay p span{
+	font-weight: bolder;
+	font-size: 0.16rem;
+	color: #fe0000;
+    margin-left: 10px;
+	
+}
+.main .btns{
+	height:0.5rem ;
+	font-size: 0.14rem;
+	width: 95%;
+	margin: 0 auto;
+	overflow: hidden;
+    zoom: 1;
+}
+.main .btns button{
+	float: right;
+	margin-top:0.11rem ;
+}
+.main .btns .comfirmBtn{
+	border: 0;
+	background: #ffa632;
+	border-radius: 6px;
+	font-size: 0.14rem;
+	color: #fff;
+	width: 6em;
+    height: 2em;
+	
+}
+.main .btns .cancelBtn{
+	border:2px solid #ffa632;
+	background: #fff;
+	border-radius: 6px;
+	font-size: 0.14rem;
+	color: #ffa632;
+	width: 6em;
+    height: 2em;
+	margin-right: 0.1rem;
+}
+
+
+
+
+
+
+
+

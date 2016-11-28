@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>预约状态</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/orderState.css" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="content">
+				<p>预约时间:<span class="appoTime"></span></p>
+				<p>预约地址:<span class="custAddrs"></span></p>
+				<p>预约状态:<span style="color: #fd0100;" class="orderstate"></span><button class="cancelOrder">取消预约</button></p>
+			</div>
+		</header>
+		<section class="section1">
+			<div class="jindutiao"></div>
+			<div class="main">
+				<p style="color: #23a0fd;">提交预约</p>
+				<p class="curTime"></p>
+				<p style="position: absolute;left: 0;bottom: 0;" >等待系统处理</p>
+			</div>
+			
+		</section>
+		<!--点击确认弹出遮罩-->
+		<div class="orderMask">
+			<div class="main">
+				<p class="title">是否取消本次预约？</p>
+				<p class="footer">
+					<button class="YES" style="color: #25a0fe;">确定</button>
+					<button class="NO" style="color: #666;">取消</button>
+				</p>
+			</div>
+		</div>
+		<script src="../js/orderState.js"></script>
+		<script src="../js/publicJs.js"></script>
+		<script>
+			var appoTime=decodeURI(location.href.split("?")[2]);
+			var custAddrs=decodeURI(location.href.split("?")[3]);
+			var id=location.href.split("?")[1];
+			var orderstate=yyorderState(location.href.split("?")[4]);
+			if(!appoTime){
+				appoTime="";
+			}
+			$(".cancelOrder").attr("id",id);
+			$(".appoTime").html(appoTime);
+			$(".custAddrs").html(custAddrs);
+			$(".orderstate").html(orderstate);
+		
+			
+			
+			
+			//获得当前时间并格式化
+				function getNowFormatDate() {
+				    var date = new Date();
+				    var seperator1 = "-";
+				    var seperator2 = ":";
+				    var year = date.getFullYear();
+				    var month = date.getMonth() + 1;
+				    var strDate = date.getDate();
+				    if (month >= 1 && month <= 9) {
+				        month = "0" + month;
+				    }
+				    if (strDate >= 0 && strDate <= 9) {
+				        strDate = "0" + strDate;
+				    }
+				    var currentdate = year + seperator1 + month + seperator1 + strDate
+				            + " " + date.getHours() + seperator2 + date.getMinutes()
+				            + seperator2 + date.getSeconds();
+				           
+				    return currentdate;
+				}
+			var str=getNowFormatDate();
+			$(".curTime").html(str);
+			
+			
+			//取消预约弹出层
+			$(".cancelOrder").click(function(){
+				var id=$(this).attr("id");
+				window.location.href="cancelReason.html?"+id;
+			//	$(".orderMask").css("display","block");
+			});
+//			$(".NO").click(function(){
+//				$(".orderMask").css("display","none");
+//			});
+			
+			
+			
+			//点击确定取消预约
+//			$(".YES").click(function(){
+//				var id=$(".cancelOrder").attr("id");
+//				
+				//$(".cancelOrder").html("已取消").attr('disabled','disabled').css({"background":'#ccc',"color":"#fff"});
+//				window.location.href="cancelReason.html?"+id;
+//			});
+		</script>
+	</body>
+</html>

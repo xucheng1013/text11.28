@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的</title>
+		<link rel="stylesheet" href="../css/personalCenter.css" />
+		<style>
+		.personalCenterSection1 dt{
+			position: relative;
+		}
+			.waitComfirm_tip{
+				/*position: absolute;
+			    top: -4px;
+			    right: 5px;
+			    width: 13px;
+			    height: 12px;
+			    background: red;
+			    border-radius: 50%;
+			    font-size: 12px;
+			    text-align: center;
+			    line-height: 12px;
+			    color: #fff;*/
+			    
+			       position: absolute;
+				    top: -7px;
+				    right: 1px;
+				    background: red;
+				    padding: 2px 5px;
+				    font-size: 12px;
+				    line-height: 1;
+				    color: #fff;
+				    border-radius: 100px;
+				    display: none;
+			}
+		</style>
+		<script src="../js/jquery.min.js"></script>
+		
+		<script>
+//			//获取openid
+//			
+//			//直接点击个人中心进来
+//			var str=location.href;
+//			var openid="";
+//			var  waitConfirmCount;
+//			var  doingCount;//执行中
+//			var  waitPayCount;//待支付
+//			var  payCompleteCount;//已支付
+//			openid=localStorage.getItem("openid");
+//			if(!openid){
+//				var code=location.href.split("=")[1].split("&")[0];
+//				console.log(location.href)
+//				$.ajax({
+//					url:"http://192.168.100.17:8080/UAV/weixin/register",
+//					type: "post", 
+//					data:{"code":code},
+//					dataType:"json",
+//					//jsonp:"callback",
+//					success: function(msg){
+//						openid=msg.result.openid;
+//						localStorage.setItem("openid",openid);
+//						console.log(msg);
+//						console.log(openid);
+//						$.ajax({
+//							url:"http://192.168.100.17:8080/UAV/weixin/home/"+openid,
+//							type: "get", 
+//							dataType:"json",
+//							success:function(msg){
+//								console.log(msg)
+//								waitConfirmCount=msg.result.waitConfirmCount;
+//								doingCount=msg.result.doingCount;
+//								waitPayCount=msg.result.waitPayCount;
+//								payCompleteCount=msg.result.payCompleteCount;
+//								$(".waitConfirmCount").html(waitConfirmCount);
+//		$(".doingCount").html(doingCount);
+//		$(".waitPayCount").html(waitPayCount);
+//		$(".payCompleteCount").html(payCompleteCount);
+//								$(".personalCenterImg").attr("src",msg.result.headimgurl);
+//								$('#nameInput').html(msg.result.nickname);
+//							}
+//						})
+//					}, //操作成功后的操作！msg是后台传过来的值
+//					error:function(msg){
+//						console.log(msg);
+//					}
+//				}); 
+//			}else{
+//				$.ajax({
+//					url:"http://192.168.100.17:8080/UAV/weixin/home/"+openid,
+//					type: "get", 
+//					dataType:"json",
+//					success:function(msg){
+//						debugger
+//						console.log(msg)
+//						waitConfirmCount=msg.result.waitConfirmCount;
+//						doingCount=msg.result.doingCount;
+//						waitPayCount=msg.result.waitPayCount;
+//						payCompleteCount=msg.result.payCompleteCount;
+//						$(".waitConfirmCount").html(waitConfirmCount);
+//		$(".doingCount").html(doingCount);
+//		$(".waitPayCount").html(waitPayCount);
+//		$(".payCompleteCount").html(payCompleteCount);
+//						$(".personalCenterImg").attr("src",msg.result.headimgurl);
+//						$('#nameInput').html(msg.result.nickname);
+//					}
+//				});
+//			}
+		</script>
+		
+	</head>
+	<body>
+		<div style="height: 100%;" class="wrapper">
+		<header class="personalCenterHeader" >
+			<a href="javascript:;" class="mydetail">
+			<dl>
+				<dt><img src=""  class="personalCenterImg"/></dt>
+				<dd>
+					<p>用户名:<span id="nameInput"></span></p>
+					<!--<p>手机号:13888888888</p>-->
+				</dd>
+			</dl>
+			</a>
+		</header>
+		<section class="personalCenterSection1">
+			<a href="waitComfirmOrder.html">
+			<dl>
+				<dt>
+					<img src="../img/daiqueren_list.png" />
+					<div class="waitComfirm_tip waitConfirmCount"></div>
+				</dt>
+				<dd>待确认</dd>
+			</dl>
+			</a>
+			<a href="ongoingOrder.html">
+			<dl>
+				<dt>
+					<img src="../img/zhixingzhong_list.png" />
+					<div class="waitComfirm_tip doingCount"></div>
+				</dt>
+				<dd>执行中</dd>
+			</dl>
+			</a>
+			<a href="waitPayOrder.html">
+			<dl>
+				<dt>
+					<img src="../img/daizhifu_list.png" />
+					<div class="waitComfirm_tip waitPayCount"></div>
+				</dt>
+				<dd>待支付</dd>
+			</dl>
+			</a>
+			<a href="hasPayOrder.html">
+			<dl>
+				<dt>
+					<img src="../img/yizhifu_list.png" />
+					<div class="waitComfirm_tip payCompleteCount"></div>
+				</dt>
+				<dd>已支付</dd>
+			</dl>
+			</a>
+		</section>
+		<section class="personalCenterSection2">
+			<a href="myPackage .html">
+				<dl>
+					<dt><img src="../img/wodetaocan.png" /></dt>
+					<dd>我的套餐</dd>
+				</dl>
+			</a>
+		
+		</section>
+		<section class="personalCenterSection3">
+			<a href="myOrder.html">
+				<dl>
+					<dt><img src="../img/wodeyuyue.png" /></dt>
+					<dd>我的预约</dd>
+				</dl>
+			</a>
+		
+		</section>
+		<section class="personalCenterSection4">
+			<a href="coupon.html">
+				<dl>
+					<dt><img src="../img/wodegouwuquan.png" /></dt>
+					<dd>优惠券</dd>
+				</dl>
+			</a>
+		
+		</section>
+		<section class="personalCenterSection5">
+			<a href="shareFriends.html">
+				<dl>
+					<dt><img src="../img/yaoqingzhuce.png" /></dt>
+					<dd>邀请注册</dd>
+				</dl>
+			</a>
+		
+		</section>
+		<section class="personalCenterSection6">
+			<a href="javascript:;" class="feekback">
+				<dl>
+					<dt><img src="../img/yijianfankui.png" /></dt>
+					<dd>反馈意见</dd>
+				</dl>
+			</a>
+		
+		</section>
+		<div style="width: 100%;height: 78px;"></div>
+		</div>
+		<footer class="personalCenterFooter">
+			<a href="javascript:;" class="indexI">
+			<dl>
+				<dt><img src="../img/index_1.png" /></dt>
+				<dd>首页</dd>
+			</dl>
+			</a>
+			<a href="javascript:;" class="taocan">
+			<dl>
+				<dt><img src="../img/taocan_1.png" /></dt>
+				<dd>套餐</dd>
+			</dl>
+			</a>
+			<a href="javascript:;" class="orderC">
+			<dl>
+				<dt><img src="../img/yuyue_1.png" /></dt>
+				<dd>预约</dd>
+			</dl>
+			</a>
+			<a >
+			<dl>
+				<dt><img src="../img/wo_2.png" /></dt>
+				<dd style="color: #0079fe;">我的</dd>
+			</dl>
+			</a>
+		</footer>
+	</body>
+	<script src="../js/personalCenter.js"></script>
+		<script>
+		//获取openid
+			
+			//直接点击个人中心进来
+			var str=location.href;
+			var openid="";
+			var  waitConfirmCount;
+			var  doingCount;//执行中
+			var  waitPayCount;//待支付
+			var  payCompleteCount;//已支付
+			openid=localStorage.getItem("openid");
+			if(!openid){
+				var code=location.href.split("=")[1].split("&")[0];
+				console.log(location.href)
+				$.ajax({
+					url:"http://192.168.100.17:8080/UAV/weixin/register",
+					type: "post", 
+					data:{"code":code},
+					dataType:"json",
+					//jsonp:"callback",
+					success: function(msg){
+						openid=msg.result.openid;
+						localStorage.setItem("openid",openid);
+						console.log(msg);
+						console.log(openid);
+						$.ajax({
+							url:"http://192.168.100.17:8080/UAV/weixin/home/"+openid,
+							type: "get", 
+							dataType:"json",
+							success:function(msg){
+								console.log(msg)
+								waitConfirmCount=msg.result.waitConfirmCount;
+								doingCount=msg.result.doingCount;
+								waitPayCount=msg.result.waitPayCount;
+								payCompleteCount=msg.result.payCompleteCount;
+								if(waitConfirmCount==0){
+									$(".waitConfirmCount").hide();
+								}else{									
+									$(".waitConfirmCount").html(waitConfirmCount);
+									$(".waitConfirmCount").show();
+								}
+								if(doingCount==0){
+									$(".doingCount").hide();
+								}else{									
+									$(".doingCount").html(doingCount);
+									$(".doingCount").show();
+								}
+								if(waitPayCount==0){
+									$(".waitPayCount").hide();
+								}else{									
+									$(".waitPayCount").html(waitPayCount);
+									$(".waitPayCount").show();
+								}
+								if(payCompleteCount==0){
+									$(".payCompleteCount").hide();
+								}else{									
+									$(".payCompleteCount").html(payCompleteCount);
+									$(".payCompleteCount").show();
+								}
+								
+								
+								$(".personalCenterImg").attr("src",msg.result.headimgurl);
+								$('#nameInput').html(msg.result.nickname);
+							}
+						})
+					}, //操作成功后的操作！msg是后台传过来的值
+					error:function(msg){
+						console.log(msg);
+					}
+				}); 
+			}else{
+				$.ajax({
+					url:"http://192.168.100.17:8080/UAV/weixin/home/"+openid,
+					type: "get", 
+					dataType:"json",
+					success:function(msg){
+						console.log(msg)
+						waitConfirmCount=msg.result.waitConfirmCount;
+						doingCount=msg.result.doingCount;
+						waitPayCount=msg.result.waitPayCount;
+						payCompleteCount=msg.result.payCompleteCount;
+						if(waitConfirmCount==0){
+							$(".waitConfirmCount").hide();
+						}else{									
+							$(".waitConfirmCount").html(waitConfirmCount);
+							$(".waitConfirmCount").show();
+						}
+						if(doingCount==0){
+							$(".doingCount").hide();
+						}else{									
+							$(".doingCount").html(doingCount);
+							$(".doingCount").show();
+						}
+						if(waitPayCount==0){
+							$(".waitPayCount").hide();
+						}else{									
+							$(".waitPayCount").html(waitPayCount);
+							$(".waitPayCount").show();
+						}
+						if(payCompleteCount==0){
+							$(".payCompleteCount").hide();
+						}else{									
+							$(".payCompleteCount").html(payCompleteCount);
+							$(".payCompleteCount").show();
+						}
+						$(".personalCenterImg").attr("src",msg.result.headimgurl);
+						$('#nameInput').html(msg.result.nickname);
+					}
+				});
+			}
+		$(".mydetail").click(function(){
+		 	location.href='accountInfo.html?'+openid;
+		})
+		
+		$(".taocan").click(function(){
+		 location.href='package.html?'+openid;
+		});
+		$(".orderC").click(function(){
+		 location.href='ordered.html?'+openid;
+		});
+		$(".indexI").click(function(){
+		 location.href='../index01.html?'+openid;
+		});
+		
+		$(".feekback").click(function(){
+			location.href='feedback.html?'+openid;
+		})
+	</script>
+</html>

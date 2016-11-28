@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>取消原因</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/cancelReason.css" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<p>请选择取消原因:</p>
+		</header>
+		<section>
+			<p  class="pn">任性，突然不想预约了！</p>
+			<p  class="pn">不小心，点错了！</p>
+			<p  class="pn">等待时间太久了！</p>
+		</section>
+		<footer>
+			<button class="qued">确  定</button>
+		</footer>
+		<!--点击确认弹出遮罩-->
+		<div class="orderMask">
+			<div class="main">
+				<p class="title">是否取消本次预约？</p>
+				<p class="footer">
+					<button class="YES" style="color: #25a0fe;">确定</button>
+					<button class="NO" style="color: #666;">取消</button>
+				</p>
+			</div>
+		</div>
+		<script>
+		 var openid=localStorage.getItem("openid");
+		 console.log(openid)
+			var str="";
+			var id=location.href.split("?")[1];
+			$(".pn").each(function(){
+				$(this).click(function(){
+					$(this).addClass("blue").siblings().removeClass("blue");
+					str=$(this).html();
+			});
+			});
+			
+			$(".qued").click(function(){
+				$(".orderMask").css("display","block");
+				
+			});
+	
+			$(".NO").click(function(){
+				$(".orderMask").css("display","none");
+				location.href="myOrder.html";
+			});
+			
+			
+			
+			//点击确定取消预约
+			$(".YES").click(function(){
+				console.log(id);
+				console.log(str);
+				
+				$.ajax({
+					type:"post",
+					url:"http://192.168.100.17:8080/UAV/weixin/apptmtcancel/"+id,
+					dataType:"json",
+					data:{
+						"remarks":str,
+						"openid":openid
+					},
+					success:function(msg){
+						console.log(msg);
+						if(msg.code=="000000"){
+							location.href="myOrder.html";
+						}else{
+							alert(msg.message)
+						}
+					},
+					error:function(){
+						console.log(msg);
+					}
+				});
+			});	
+		</script>
+	</body>
+</html>

@@ -1,0 +1,162 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+    -webkit-user-select:none;
+}
+html{
+	background: #fff;
+	font-size:12px ;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:transparent;outline: none;}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+*{margin: 0;padding: 0;}
+header{
+	background: #fff;
+	border-bottom: 10px solid #ebebeb;
+    padding:10px 30px;
+}
+header p {
+    font-size: 12px;
+    color: #666666;
+    line-height: 22px;
+}
+header p span{
+	margin-left: 2%;
+}
+header p.title{
+	font-size: 14px;
+    color: #333333;
+    line-height: 30px;
+}
+#orderNum{
+    margin-left:0;
+}
+.toSalesMan{
+    background: #fff;
+}
+.toSalesMan p{
+	font-size: 14px;
+    color: #333333;
+    line-height: 35px;
+    border-bottom: 1px solid #ededed;
+    padding-left: 30px;
+    letter-spacing:3px;
+    font-weight:500;
+}
+.toSalesMan .grade{
+	padding:0px 30px;
+}
+.toSalesMan textarea{
+    width:94%;
+    height: 75px;
+    border: 1px solid #dddddd;
+    padding:3%;
+    line-height:20px;
+    letter-spacing:2px;
+}
+
+.toFlyingMan{
+	margin: 0 auto;
+    background: #fff;
+   	border-top: 10px solid #ebebeb;
+}
+.toFlyingMan p{
+	font-size: 14px;
+    color: #333333;
+    line-height: 35px;
+    border-bottom: 1px solid #ededed;
+    padding-left: 30px;
+    letter-spacing:3px;
+}
+.toFlyingMan .grade{
+	padding:5px 30px;
+    height: 50px;
+
+}
+.toFlyingMan textarea{
+	width:94%;
+    height: 52px;
+    border: 1px solid #dddddd;
+    padding:3%;
+    line-height:20px;
+    letter-spacing:2px;
+}
+.addPhoto .takePhoto{
+	width: 16%;
+    margin-left: 30px;
+}
+.addPhoto p{
+	border: 0;
+}
+.addPhoto .takePhoto img{
+	width: 100%;
+}
+.addPhoto span{
+	font-size: 10px;
+    color: #ffa631;
+}
+#score-callback-SalesMan img{
+	height: 100%;
+}
+.score-callback-FlyingMan img {
+    height: 100%;
+}
+.personimg{
+	display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 50px;
+    border:1px solid #fff;
+    border-radius:5px;
+    overflow: hidden;
+}
+.personimg img{
+    width:100%;
+    height: 100%;
+}
+.demo{
+	padding: 5px 0px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.fs{
+    padding:0px;
+    line-height: 25px;
+    height: 50px;
+    padding-left:5px;
+    width:67%;
+}
+.fs>div{
+    color:#76DBFF;
+}
+.fs>.score-callback-FlyingMan{
+   height:20px;
+}
+#score-callback-FlyingMan img{
+	width: 10%;
+}
+footer{
+	text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+footer button{
+	width: 97%;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    background: #15c5ff;
+}
+.textareaWrap{
+    padding:0px 30px;
+    margin-bottom:10px;
+}

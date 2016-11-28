@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>订单详情</title>
+		<link rel="stylesheet" href="../css/detailOrder.css" />
+	</head>
+	<body>
+		<header>订单详情</header>
+		<div class="main">
+			<div class="top">
+				<p>预约人: <span class="nameS"></span></p>
+				<p>联系方式: <span class="telS"></span></p>
+				<p>地址: <span class="addressS"></span></p>
+				<p style="margin-bottom: 10px;">作业时间: <span class="timeS"></span></p>
+			</div>
+			<div class="center">
+				<p>地块面积:<span class="wrapper"><span class="areaS"></span>亩</span></p>
+				<p>药品类型:<span class="pesticideS wrapper"></span></p>
+				<p style="margin-bottom: 10px;">无人机类型:<span class="uavS wrapper"></span></p>
+			</div>
+			<div class="bottom">
+				<p>订单金额:<span class="wrapper"><span class="ordernumS"></span>元</span></p>
+				<p>已付金额:<span class="wrapper"><span class="orderTabNumS"></span>元</span></p>
+				<p>预付金额:<span class="wrapper"><span class="orderTabNum"></span>元</span></p>
+				<p style="margin-bottom: 10px;">尾款金额:<span class="wrapper"><span class="unpayS"></span>元</span></p>
+			</div>
+			
+		</div>
+		<footer>
+			<div class="button">
+				<button class="comfirmBtn" style="background: #ffa632;color: #fff;">去支付</button>
+			</div>
+		</footer>
+	</body>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script> 
+	<script src="../js/jquery.min.js"></script>
+	<script>
+	 var openid=localStorage.getItem("openid");
+		//取出订单详情
+		var str1=location.href;
+		var custname="";
+		var custphone="";
+		var estArea="";
+		var orderAddress="";
+		var orderNum="";
+		var paid="";
+		var unpaidNum="";
+		var pesticideType="";
+		var starttime="";
+		var uavtype="";
+		var orderTabNum=0;
+		var orderid;	
+		var type;
+		jQuery.getQueryStringByName = function (name) {
+			    var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+			    if (result == null || result.length < 1) {
+			        return "";
+			    }
+			    return result[1];
+			}
+		orderid=$.getQueryStringByName("id");
+		type=$.getQueryStringByName("type");
+function nonestr(str){
+	if(!str){
+		str="";
+		return str;
+	}else{
+		return str;
+	}
+	
+}
+function nonenum(str){
+	if(!str){
+		str=0;
+		return str;
+	}else{
+		return str;
+	}
+	
+}
+
+	//获取订单详情
+	$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/orderdetail1/"+orderid+"/"+openid,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				console.log(msg);
+				var obj=msg.result;
+				custname=nonestr(obj.custname);
+				custphone=nonestr(obj.custphone);
+				orderAddress=nonestr(obj.orderAddress);
+				starttime=nonestr(obj.starttime.split(" ")[0]);
+				estArea=nonenum(obj.estArea);
+				pesticideType=nonestr(obj.pesticideType);
+				uavtype=nonestr(obj.uavtype);
+				orderNum=nonenum(obj.orderNum);
+				paid=nonenum(obj.paid);
+				unpaidNum=nonenum(obj.unpaidNum);
+				orderTabNum=nonenum(obj.orderTabNum);
+				$(".nameS").html(custname);
+				$(".telS").html(custphone);
+				$(".addressS").html(orderAddress);
+				$(".timeS").html(starttime);
+				$(".areaS").html(estArea);
+				$(".pesticideS").html(pesticideType);
+				$(".uavS").html(uavtype);
+				$(".ordernumS").html(orderNum);
+				$(".orderTabNumS").html(paid);//
+				$(".unpayS").html(unpaidNum);
+				$(".orderTabNum").html(orderTabNum);
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		}); 
+		
+	
+	//确认支付
+	//去支付
+	$(document).on("click",".comfirmBtn",function(){
+		var totalfee=(unpaidNum*100).toFixed(0);
+		var description="支付订单尾款金额:￥"+unpaidNum;
+		var spbillcreateip=returnCitySN["cip"];
+		var appId="";
+		var nonceStr="";
+		var package="";
+		var paySign="";
+		var str=new Date();
+		var	timeStamp=String(parseInt(str.getTime()/1000));
+		var that=$(this);
+		console.log(totalfee);
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/confirm/"+openid+"/"+orderid,
+			type: "post", 
+			dataType:"json",
+			data:{
+				"orderid":orderid,//订单id
+				"description":description,//商品描述
+				"spbillcreateip":spbillcreateip,//终端IP
+				"timeStamp":timeStamp,
+				"totalfee":totalfee//支付总金额，分为单位
+			},
+			success:function(msg){
+				console.log(msg);
+				console.log("预支付成功");
+				appId=msg.result.appid;
+				nonceStr=msg.result.nonceStr;
+				package="prepay_id="+msg.result.prepay_id;
+				paySign=msg.result.paySign;
+				function onBridgeReady(){
+				   WeixinJSBridge.invoke(
+				       'getBrandWCPayRequest', {
+				           "appId" :appId,     //公众号名称，由商户传入     
+				           "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数     
+				           "nonceStr" :nonceStr, //随机串     
+				           "package" : package,     
+				           "signType" : "MD5",         //微信签名方式：     
+				           "paySign" :paySign //微信签名 
+				       },
+				       function(res){  
+				       		if(res.err_msg == "get_brand_wcpay_request:ok") {
+								//alert("微信支付成功!");
+								that.html("已支付").attr('disabled','disabled').css({"background":'#ccc'});
+							} else if(res.err_msg == "get_brand_wcpay_request:cancel") {
+								//alert("用户取消支付!");
+							} else {
+								//alert("支付失败!");
+							}
+				       }
+				   ); 
+				}
+				if (typeof WeixinJSBridge == "undefined"){
+				   if( document.addEventListener ){
+				       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+				   }else if (document.attachEvent){
+				       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+				       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+				   }
+				}else{
+				   onBridgeReady();
+				}
+			},
+			error:function(msg){
+				console.log(msg);
+			}
+		});
+	})
+	</script>
+</html>

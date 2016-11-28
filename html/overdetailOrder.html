@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>订单详情</title>
+		<link rel="stylesheet" href="../css/detailOrder.css" />
+	</head>
+	<body>
+		<header>订单详情</header>
+		<div class="main">
+			<div class="top">
+				<p>预约人: <span class="nameS"></span></p>
+				<p>联系方式: <span class="telS"></span></p>
+				<p>地址: <span class="addressS"></span></p>
+				<p style="margin-bottom: 10px;">作业时间: <span class="timeS"></span></p>
+			</div>
+			<div class="center">
+				<p>地块面积:<span class="wrapper"><span class="areaS"></span>亩</span></p>
+				<p>药品类型:<span class="pesticideS wrapper"></span></p>
+				<p style="margin-bottom: 10px;">无人机类型:<span class="uavS wrapper"></span></p>
+			</div>
+			<div class="bottom">
+				<p>订单金额:<span class="wrapper"><span class="ordernumS"></span>元</span></p>
+				<p>已付金额:<span class="wrapper"><span class="orderTabNumS"></span>元</span></p>
+				<p>预付金额:<span class="wrapper"><span class="orderTabNum"></span>元</span></p>
+				<p style="margin-bottom: 10px;">尾款金额:<span class="wrapper"><span class="unpayS"></span>元</span></p>
+			</div>
+			
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+	 var openid=localStorage.getItem("openid");
+		//取出订单详情
+		var str1=location.href;
+		var custname="";
+		var custphone="";
+		var estArea="";
+		var orderAddress="";
+		var orderNum="";
+		var paid="";
+		var unpaidNum="";
+		var pesticideType="";
+		var starttime="";
+		var uavtype="";
+		var orderTabNum=0;
+		var orderid;	
+		var type;
+		var id=str1.split("?")[1];
+function nonestr(str){
+	if(!str){
+		str="";
+		return str;
+	}else{
+		return str;
+	}
+	
+}
+function nonenum(str){
+	if(!str){
+		str=0;
+		return str;
+	}else{
+		return str;
+	}
+	
+}
+
+	//获取订单详情
+	$.ajax({
+		url:"http://192.168.100.17:8080/UAV/weixin/appoDetail/"+id+"/"+openid,//这个接口只用于获取完成订单的详情，预约详情
+		type: "get", 
+		dataType:"json",
+		success: function(msg){
+			console.log(msg);
+			var obj=msg.result;
+			custname=nonestr(obj.custname);
+			custphone=nonestr(obj.custphone);
+			orderAddress=nonestr(obj.orderAddress);
+			starttime=nonestr(obj.starttime.split(" ")[0]);
+			estArea=nonenum(obj.estArea);
+			pesticideType=nonestr(obj.pesticideType);
+			uavtype=nonestr(obj.uavtype);
+			orderNum=nonenum(obj.orderNum);
+			paid=nonenum(obj.paid);
+			unpaidNum=nonenum(obj.unpaidNum);
+			orderTabNum=nonenum(obj.orderTabNum);
+			$(".nameS").html(custname);
+			$(".telS").html(custphone);
+			$(".addressS").html(orderAddress);
+			$(".timeS").html(starttime);
+			$(".areaS").html(estArea);
+			$(".pesticideS").html(pesticideType);
+			$(".uavS").html(uavtype);
+			$(".ordernumS").html(orderNum);
+			$(".orderTabNumS").html(paid);//
+			$(".unpayS").html(unpaidNum);
+			$(".orderTabNum").html(orderTabNum);
+		}, //操作成功后的操作！msg是后台传过来的值
+		error:function(msg){
+			console.log(msg);
+		}
+	}); 
+		
+
+	</script>
+</html>

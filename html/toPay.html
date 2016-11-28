@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>支付订单</title>
+		<link rel="stylesheet" href="../css/toPay.css" />
+		<style>
+			body{font-size: 14px;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="main"  >
+			<div class="top">
+			<div class="detailCenter">订单总额:<span>￥<span class="orderNum"></span></span></div>
+			<div class="detailRight">预付款:<span>￥<span class="orderTabNum"></span></span></div>
+			</div>
+			<div class="bottom">
+				<p style="color: #f3910c;">全额支付9折优惠</p>
+				<p><label><input type="checkbox" /><span>使用优惠券</span></label></p>
+			</div>
+			
+		</div>
+		<div class="btns">
+			<button class="comfirmBtn">支付预付款</button>
+			<button class="cancelBtn">全额支付（9折）</button>					
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script> 
+	<script>
+		//取出待确定订单
+		var openid=localStorage.getItem("openid");
+		var type="1";
+		var orderNum=location.href.split("?")[1];
+		var totalfee=location.href.split("?")[2];
+//		alert(totalfee)
+		var orderid=location.href.split("?")[3];
+		$(".orderNum").html(orderNum);
+		$(".orderTabNum").html(totalfee);
+//		alert(totalfee*100)
+		totalfee=(totalfee*100).toFixed(0);
+//		alert(totalfee)
+	//确认支付
+	$(document).on("click",".comfirmBtn",function(){
+		var description="支付订单预付款:￥"+totalfee/100;
+		var spbillcreateip=returnCitySN["cip"];
+		var appId="";
+		var nonceStr="";
+		var package="";
+		var paySign="";
+		var str=new Date();
+		var	timeStamp=String(parseInt(str.getTime()/1000));
+		var that=$(this);
+		debugger
+		console.log(orderid);
+		console.log(description);
+		console.log(spbillcreateip);
+		console.log(timeStamp);
+		console.log(totalfee);
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/confirm/"+openid+"/"+orderid,
+			type: "post", 
+			dataType:"json",
+			data:{
+				"orderid":orderid,//订单id
+				"description":description,//商品描述
+				"spbillcreateip":spbillcreateip,//终端IP
+				"timeStamp":timeStamp,
+				"totalfee":totalfee//支付总金额，分为单位
+			},
+			success:function(msg){
+				console.log(msg);
+				
+				appId=msg.result.appid;
+				nonceStr=msg.result.nonceStr;
+				package="prepay_id="+msg.result.prepay_id;
+				paySign=msg.result.paySign;
+				function onBridgeReady(){
+				   WeixinJSBridge.invoke(
+				       'getBrandWCPayRequest', {
+				           "appId" :appId,     //公众号名称，由商户传入     
+				           "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数     
+				           "nonceStr" :nonceStr, //随机串     
+				           "package" : package,     
+				           "signType" : "MD5",         //微信签名方式：     
+				           "paySign" :paySign //微信签名 
+				       },
+				       function(res){  
+				       		if(res.err_msg == "get_brand_wcpay_request:ok") {
+															
+								that.html("已支付").attr('disabled','disabled').css({"background":'#ccc'});
+								location.href="personalCenter.html";
+																						
+							} else if(res.err_msg == "get_brand_wcpay_request:cancel") {
+								//alert("用户取消支付!");
+							} else {
+							//	alert("支付失败!");
+							}
+				       }
+				   ); 
+				}
+				if (typeof WeixinJSBridge == "undefined"){
+				   if( document.addEventListener ){
+				       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+				   }else if (document.attachEvent){
+				       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+				       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+				   }
+				}else{
+				   onBridgeReady();
+				}
+			},
+			error:function(msg){
+				console.log(msg);
+			}
+		});
+	})
+	</script>
+</html>

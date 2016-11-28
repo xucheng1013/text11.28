@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>待确定订单</title>
+		<link rel="stylesheet" href="../css/waitComfirmOrder.css" />
+		<script type="text/javascript" src="../js/publicJs.js"></script>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li><a href="#" class="waitComfirm">待确定订单</a></li>
+				<li><a href="ongoingOrder.html">执行中订单</a></li>
+				<li><a href="waitPayOrder.html">待支付订单</a></li>
+				<li><a href="hasPayOrder.html">已支付订单</a></li>
+			</ul>
+		</header>
+		<div class="main"  >
+			<!--<div>
+				<p class="orderNumber">订单编号:40001231322<span>待付款</span></p>
+				<div class="detail">
+					<div class="detailLeft">
+						<p>订单面积:400亩</p>
+						<p>药品类型:敌敌畏...</p>
+					</div>
+					<div class="detailCenter">订单总额:<span>￥600</span></div>
+					<div class="detailRight">预约金额:<span>￥200</span></div>
+				</div>
+				<div class="hasPay"><p>实付:<span>￥200.00</span></p></div>
+				<div class="btns">
+					<button class="comfirmBtn">确认支付</button>
+					<button class="cancelBtn">取消订单</button>
+					
+				</div>
+			</div>-->
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script> 
+	<script>
+		//取出待确定订单
+		var openid=localStorage.getItem("openid");
+		var type="1";
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/orderlist/"+openid+"/"+type,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				console.log(msg);
+				var html="";
+                for (var i = 0; i < msg.result.length; i++) {
+                    var obj = msg.result[i];
+                    var fee=obj.orderTabNum;
+                    if(!obj.estArea){obj.estArea=0}
+                    if(!obj.pesticideType){obj.pesticideType=""}
+                    if(obj.orderState=="100"){
+                    	 html += '<div orderId='+obj.orderId+'  class="order"><p class="orderNumber">订单编号:'+nonestr(obj.orderCode)+'<span>待付款</span></p><div class="detail" onclick="details('+obj.orderId+')"><div class="detailLeft"><p>订单面积:'+nonenum(obj.estArea)+'亩</p><p>药品类型:'+nonestr(obj.pesticideType)+'...</p></div><div class="detailCenter">订单总额:<span>￥'+nonenum(obj.orderNum)+'</span></div><div class="detailRight"><span>预付款:</span><span>￥'+nonenum(obj.orderTabNum)+'</span></div></div><div class="hasPay"><p>实付:<span>￥'+nonenum(obj.paid)+'</span></p></div><div class="btns"><button class="comfirmBtn" orderId='+obj.orderId+' totalfee='+fee+' orderNum='+obj.orderNum+'>确认订单</button><button class="cancelBtn" orderId='+obj.orderId+'>取消订单</button></div></div>'
+                    }                  
+                }
+                $(".main").html(html);
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		}); 
+		
+//onclick="details('+obj.orderId+')"		
+	//取消订单
+	$(document).on("click",".cancelBtn",function(){
+		var orderid=$(this).attr("orderId");
+		location.href="cancelOrder.html?"+orderid;
+//		var that=$(this);
+//		console.log(orderid)
+//		$.ajax({
+//			url:"http://192.168.100.17:8080/UAV/weixin/cancel/"+openid+"/"+orderid,
+//			type: "get", 
+//			dataType:"json",
+//			success:function(msg){
+//				console.log(msg);
+//				that.html("已取消").attr('disabled','disabled').css({"background":'#ccc',"color":"#fff","border": "2px solid #ccc"});
+//		that.siblings().attr('disabled','disabled').css({"background":'#ccc'});
+//			}
+//		});
+		
+	});
+	
+	//确认支付
+	$(document).on("click",".comfirmBtn",function(){
+		console.log(openid)
+		var orderid=$(this).attr("orderid");
+		var totalfee=$(this).attr("totalfee");
+		var orderNum=$(this).attr("orderNum");
+		var description="支付订单预付款:￥"+totalfee/100;
+		var spbillcreateip=returnCitySN["cip"];
+		var appId="";
+		var nonceStr="";
+		var package="";
+		var paySign="";
+		var str=new Date();
+		var	timeStamp=String(parseInt(str.getTime()/1000));
+		var that=$(this);
+		console.log(totalfee);
+//		alert(totalfee)
+		
+		$.ajax({
+			type:"post",
+			url:"http://192.168.100.17:8080/UAV/weixin/confirmOrder/"+openid+"/"+orderid,
+			dataType:"json",
+			success:function(msg){
+				console.log(msg);
+				var code=msg.code;
+//				setTimeout(function(){
+					location.href="toPay.html?"+orderNum+"?"+totalfee+"?"+orderid;
+//				}, 5000 );				
+			},
+			error:function(msg){
+				console.log(msg);
+			}
+		});
+								
+
+		
+		
+//		$.ajax({
+//			url:"http://192.168.100.17:8080/UAV/weixin/confirmOrder/"+openid+"/"+orderid,
+//			type: "post", 
+//			dataType:"json",
+//			data:{
+//				"orderid":orderid,//订单id
+//				"description":description,//商品描述
+//				"spbillcreateip":spbillcreateip,//终端IP
+//				"timeStamp":timeStamp,
+//				"totalfee":totalfee//支付总金额，分为单位
+//			},
+//			success:function(msg){
+//				console.log(msg);
+//				
+//				alert(msg.message);
+//				
+//				appId=msg.result.appid;
+//				nonceStr=msg.result.nonceStr;
+//				package="prepay_id="+msg.result.prepay_id;
+//				paySign=msg.result.paySign;
+//				function onBridgeReady(){
+//				   WeixinJSBridge.invoke(
+//				       'getBrandWCPayRequest', {
+//				           "appId" :appId,     //公众号名称，由商户传入     
+//				           "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数     
+//				           "nonceStr" :nonceStr, //随机串     
+//				           "package" : package,     
+//				           "signType" : "MD5",         //微信签名方式：     
+//				           "paySign" :paySign //微信签名 
+//				       },
+//				       function(res){  
+//				       		if(res.err_msg == "get_brand_wcpay_request:ok") {
+//								alert("微信支付成功!");
+//								that.html("已支付").attr('disabled','disabled').css({"background":'#ccc'});
+//								
+//																						
+//							} else if(res.err_msg == "get_brand_wcpay_request:cancel") {
+//								alert("用户取消支付!");
+//							} else {
+//								alert("支付失败!");
+//							}
+//				       }
+//				   ); 
+//				}
+//				if (typeof WeixinJSBridge == "undefined"){
+//				   if( document.addEventListener ){
+//				       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+//				   }else if (document.attachEvent){
+//				       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+//				       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+//				   }
+//				}else{
+//				   onBridgeReady();
+//				}
+//			},
+//			error:function(msg){
+//				console.log(msg);
+//			}
+//		});
+	})
+
+
+
+		function details(id){
+			location.href="./detailOrder.html?id="+id+"&type=1";
+		}
+	</script>
+</html>

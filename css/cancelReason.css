@@ -1,0 +1,99 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+    -webkit-user-select:none;
+}
+button{
+	outline: none;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+html{
+	background: #ebebeb;
+}
+
+*{margin: 0;padding: 0;}
+header{
+    color: #666;
+    font-size:10px ;
+}
+header p{
+	line-height: 25px;
+    margin-left: 10%;
+}
+section p{
+	line-height: 40px;
+    background: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+    color:#B7B7B7;
+    font-size: 12px;
+}
+section .blue{
+	color: #15c5ff;
+}
+footer{
+	text-align: center;
+	margin-top: 30px;
+}
+footer button{
+	width: 97%;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    background: #15c5ff;
+}
+.orderMask{
+	display: none;
+	position: absolute;
+	left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 400;
+    
+}
+
+.orderMask .main{
+	width: 80%;
+    height: 20%;
+    background: #fff;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.orderMask .main .title{
+	color: #333;
+    font-size: 15px;
+    margin-top:7%;
+    margin-left: 8%;
+}
+.orderMask .main .footer{
+	overflow: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 12%;
+    width: 100%;
+}
+.orderMask .main button{
+	width: 24%;
+	font-size: 15px;
+    height: 24px;
+    border: 0;
+    float: right;
+    background: 0;
+}

@@ -1,0 +1,114 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+}
+html{
+	font-size: 100px;
+	background: #2e9fff;
+}
+body{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	-webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+*{margin: 0;padding: 0;}
+div.main{
+	height: 80%;
+	overflow-y: auto;
+}
+div.coupon{
+	width: 80%;
+	height: 27%;
+	position: relative;
+    background: url(../img/youhuiquan.png) no-repeat;
+    background-size: 100% 100%;
+   /*background-size: cover;   
+-webkit-background-size: cover;   
+-moz-background-size: cover;   
+-o-background-size: cover;*/
+    margin: 0.2rem auto;
+    text-align: center;
+}
+div.coupon .top{
+	font-size: 12px;
+	color: #2e9fff;
+	padding-top:2%;
+}
+div.coupon .center1{
+	font-size: 25.5px;
+	color: #2e9fff;
+	font-weight: 600;
+	margin-top: 1%;
+}
+div.coupon .center2{
+	font-size: 12px;
+	color: #999;
+	margin-top: 3%;
+}
+div.coupon .bottom{
+	width: 75%;
+    position: absolute;
+    bottom: 9%;
+    left: 0;
+    right:0;
+    margin:auto;
+    font-size: 10px;
+    color: #999;
+    overflow: hidden;
+    
+    
+}
+div.coupon .bottom .left{
+	float: left;
+}
+div.coupon .bottom .right{
+	float: right;
+}
+
+
+div.useRule{
+	width: 80%;
+    background-size: 100% 100%;
+    margin: 0.1rem auto;
+    position: fixed;
+    bottom: 10%;
+    left: 10%;
+    background: #fff;
+    border-radius: 6px;
+}
+div.useRule .header{
+	width: 100%;
+    height: 0.3rem;
+    color: #333;
+    font-size: 12px;
+    line-height: 0.3rem;
+}
+div.useRule .main{
+	width: 96%;
+	height: 90%;
+	color: #929292;
+	font-size: 12px;
+	padding:0 0.1rem;
+	line-height: 0.25rem;
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+

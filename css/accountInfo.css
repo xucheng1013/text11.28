@@ -1,0 +1,307 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+    -webkit-user-select:none;
+}
+html{
+	background: #ebebeb;
+}
+input, button { cursor: pointer; -webkit-appearance: none; } 
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+*:focus{
+	-webkit-appearance: none; 
+	outline: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+::-webkit-input-placeholder{color:#999;}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+*{margin: 0;padding: 0;}
+header{
+	height: 26%;
+    padding: 20px 0px;
+    background: #fff;
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+     -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+header .touxiang{
+	width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #CEC9CF;
+    overflow: hidden;
+    -webkit-border-radius:50%;
+}
+header img{
+	width: 100%;
+    height: 100%;    
+}
+section.section1{
+    margin-top: 10px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.section1 form{
+	height: 100%;
+}
+.section1 form p{
+	height: 45px;
+	background: #fff;
+    margin-top: 1px;
+}
+
+.section1 form p label{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    height: 100%;
+}
+.section1 form p label span{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 20%;
+    margin-left: 5%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;
+}
+.section1 form p label input{
+	width: 70%;
+    border: 0;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-modify: read-write-plaintext-only;
+    font-size: 14px;
+    color: #666;
+}
+
+section.section2{
+    margin-top: 10px;
+    border-top: 1px solid #dddddd;
+}
+.section2 form{
+	height: 100%;
+}
+.section2 form p{
+	height: 45px;
+	background: #fff;
+    margin-top: 1px;
+}
+
+.section2 form p label{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    height: 100%;
+}
+.section2 form p label span{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 20%;
+    margin-left: 5%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;
+}
+.section2 form p label input{
+	width: 70%;
+	border: 0;
+	 outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-modify: read-write-plaintext-only;
+     font-size: 14px;
+    color: #666666;
+}
+footer{
+    width: 100%;
+	height: 20%;
+	margin-top: 20px;
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+     -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+footer button{
+	width: 97%;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+}
+button.saveChanges {
+    background: #15c5ff;
+    margin-bottom: 10px;
+}
+
+button.cancelEdit {
+    background: #ff5f5f;
+}
+
+
+/*地址弹出层开始*/
+
+.iphone { height: 45px; margin-top: 1px; background:  url(../img/iphonese.png) no-repeat; }
+.browser { position: relative; width: 320px; height: 460px; overflow: hidden;background: #fff; }
+@media (min-width: 721px) and (max-width: 1300px) {
+	.iphone { width: 100%; height: 45px;font-siz}
+	.browser { width: 100%; height: 45px; }
+}
+@media (max-width: 720px) {
+	.iphone { width: 100%;  padding: 0; background: none; }
+	.browser { width: 100%; height: 100%; }
+}
+/*选择地区*/
+.express-area{height: 100%;}
+.express-area a { display: block; height: 100%; background: url(../img/2.png) no-repeat 98% 50%;text-decoration: none;}
+.express-area dl { display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    height: 100%;}
+.express-area dl dt {display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 20%;
+    margin-left: 5%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;}
+.express-area dl dd { display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 70%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;}
+@media (min-width: 721px) and (max-width: 1300px) {
+	.express-area dl dt { font-size: 14px;line-height: 1rem; }
+	.express-area dl dd { padding-right: .6rem; margin-left: 3rem; font-size: 14px; line-height: .8rem; }
+}
+/*选择地区弹层*/
+.express-area-box { position: fixed; bottom: -100%; left: 0; z-index: 301; width: 320px; background-color: #fff; color: #4d525d; }
+.express-area-box header { height:50px;position: relative; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.express-area-box header h3 { margin: 0 1.675rem; text-align: center; font-size: 16px; line-height: 2.25rem; }
+.express-area-box header .back,
+.express-area-box header .close { position: absolute; top: 0; width: 1.675rem; height: 2.25rem; }
+.express-area-box header .back { display: none; left: 0; background: url(../img/back.png) no-repeat center;   background-size: .45rem .75rem; }
+.express-area-box header .close { right: 0; background: url(../img/close-area.png) no-repeat center; background-size: .675rem .675rem; }
+.express-area-box article { height: 250px; overflow-y: scroll; }
+.area-list li { padding: .5rem; border-bottom: 1px solid #e2e2e2; text-align: justify; font-size: 14px; line-height: 1.5rem; }
+@media (min-width: 721px) and (max-width: 1300px) {
+	.express-area-box { width: 100%; height: 400px; }
+	.express-area-box header h3 { font-size:16px; line-height: 52px; }
+	.express-area-box header .back,
+	.express-area-box header .close { height: 1.7rem; }
+	.area-list li {font-size:14px; }
+}
+@media (max-width: 720px) {
+	.express-area-box { position: fixed; left: 0; width: 100%; margin-left: 0; }
+}
+/*遮罩层*/
+.mask { display: none; position: fixed; top: 0; left: 0; z-index: 300; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); }
+@media (max-width: 720px) {
+	.mask { position: fixed; }
+}
+
+/*地址弹出层结束*/
+
+@keyframes distIn{
+	from{bottom: -100%;}
+	to{bottom: 0;}
+}
+@-webkit-keyframes distIn{
+	from{bottom: -100%;}
+	to{bottom: 0;}
+}
+@keyframes distOut{
+	from{bottom: 0;}
+	to{bottom: -100%;}
+}
+@-webkit-keyframes distOut{
+	from{bottom: 0;}
+	to{bottom: -100%;}
+}
+.distIn{
+	animation-name: distIn;
+	-webkit-animation-name:distIn ;
+	animation-duration: 300ms;
+	-webkit-animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+	display: block;
+}
+.distOut{
+	animation-name: distOut;
+	-webkit-animation-name:distOut ;
+	animation-duration: 300ms;
+	-webkit-animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+	display: none;
+}

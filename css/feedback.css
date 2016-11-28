@@ -1,0 +1,114 @@
+html,body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+}
+html{
+	background: #fff;
+	font-size:14px ;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+*{margin: 0;padding: 0;}
+header p {
+    line-height: 40px;
+    font-size: 15px;
+    color: #2385C5;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+section.title{
+	line-height: 50px;
+    width: 85%;
+    margin: 0 auto;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    height: 50px;
+    padding-left: 5%;
+    color: #a7a7a7;
+}
+section.title input{
+	width: 70%;
+    font-size: 14px;
+    height: 90%;
+    border: 0;
+    text-align: justify;
+    padding-left: 5%;
+}
+section.content{
+	text-align: center;
+    width: 100%;
+}
+section.content textarea{
+	width: 80%;
+    margin: 0 auto;
+    font-size:14px ;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    height: 184px;
+   padding-left: 5%;
+    padding-top: 4%;
+    color: #a7a7a7;
+    margin-top: 15px;
+    padding-right: 5%;
+    padding-bottom: 4%;
+    text-align: justify;
+    color: #000;
+    line-height: 20px;
+}
+p{
+	width: 90%;
+    margin: 0 auto;
+    color: #acacac;
+    line-height: 26px;
+}
+footer{
+	text-align: center;
+	margin-top: 5%;
+}
+footer button{
+	width: 97%;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    background: #15c5ff;
+}
+.mask{
+	display: none;
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+}
+.mask div{
+	position: relative;
+	width: 90%;
+    margin: 0 auto;
+    height: 90px;
+    background: #fff;
+    line-height: 90px;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    margin-top: 50%;
+}
+.mask button{
+	width: 24%;
+    height: 24px;
+    position: absolute;
+    left: 37%;
+    bottom: 11%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}

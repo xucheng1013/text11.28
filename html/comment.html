@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>评论</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/comment.css" />
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery.raty.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<p class="title">订单信息</p>
+			<p>订单编号：<span id="orderCode"></span></p>
+			<p>完成时间：<span id="completeTime"></span></p>
+			<p>订单地址：<span id="orderAddress"></span></p>
+			<p>订单金额：<span style="color: #fe0000;">￥<span id="orderNum">400.00</span></span></p>
+		</header>
+		<form name="editUserInfo" class="form-horizontal" style="display: block;" enctype="multipart/form-data" method="post">
+			<input id="orderscore" name="orderscore" value="" type="hidden"/>
+			<input id="ordervaluation" name="ordervaluation" value="" type="hidden"/>
+			<input id="pilot" name="pilot" value="" type="hidden"/>
+			<input id="score" name="score" value="" type="hidden"/>
+			<input id="content" name="content" value="" type="hidden"/>
+			<input id="userpic" name="userpic" value="" type="hidden"/>
+		</form>
+		<section class="toSalesMan">
+			<p>我想对销售说</p>
+			<div class="grade ">
+				<div class="demo">
+		            <span style="vertical-align: middle;font-size:14px;">评分：</span><span id="score-callback-SalesMan" data-score="2" style="outline: none;display: inline-block;vertical-align: middle;margin-left:10px;height: 20px;"></span>
+		        </div>
+			</div>
+            <div class="textareaWrap">
+                <textarea id="ordervaluationInput" type="text" placeholder="这次服务您还满意吗？写下您的意见发给我们，我们将会提供好的服务！（120字以内）"></textarea>
+            </div>
+			
+		</section>
+		<section class="toFlyingMan">
+			<p>我想对飞手说</p>
+			<div id="allflymen">
+				<!--<div class="singleflymen">
+					<div class="grade ">
+						<div class="personimg">
+							<img src="../img/daiqueren_list.png" />
+						</div>
+						<div class="demo fs">
+							<div>周天王</div>
+				            <span style="vertical-align: middle;font-size:14px;">评分：</span><span id="score-callback-FlyingMan" data-score="2" style="outline: none;display: inline-block;vertical-align: middle;margin-left:10px;line-height:20px;"></span>
+				        </div>
+					</div>
+		            <div class="textareaWrap" style="margin-bottom:0px;">
+		                <textarea id="taskevaluationInput" type="text" placeholder="这次服务您还满意吗？写下您的意见发给我们，我们将会提供好的服务！（200字以内）"></textarea>
+		            </div>
+				</div>-->
+			</div>
+			<div class="addPhoto">
+				<p>添加照片：<span>(最多添加3张)</span></p>
+				<div class="takePhoto"><img src="../img/takePhoto.png" /></div>
+				<div class="addimg" style="padding: 5px 30px;">
+				<!--<img src="../img/takePhoto.png" style="width: 30%;margin-left: 2%;"/>
+				<img src="../img/takePhoto.png" />
+				<img src="../img/takePhoto.png" />-->
+				</div>
+			</div>
+		</section>
+		
+		<footer>
+			<button id="comment">确定</button>
+		</footer>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="../js/publicJs.js"></script>
+	<script src="../js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="../js/comment.js"></script>
+	</body>
+</html>

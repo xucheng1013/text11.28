@@ -1,0 +1,842 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+    font-family: Microsoft Yahei,SimSun,Helvetica;
+}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(255,255,255,0);}
+input, button { cursor: pointer; -webkit-appearance: none; } 
+*:focus{
+	-webkit-appearance: none; 
+	outline: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+::-webkit-input-placeholder{color:#999;}
+a,input[type="text"],input[type="password"]{-webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;}
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+html{
+	background: #ebebeb;
+	-webkit-overflow-scrolling: touch;
+}
+body{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	-webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+	/*overflow: hidden;*/
+	position: relative;
+}
+*{margin: 0;padding: 0;}
+
+section.order{
+	position: relative;
+	overflow: hidden;
+}
+span {
+    line-height: 30px;
+    position: relative;
+}
+div.orderedAddress{
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 14px;
+	height:65px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+div.orderedAddress .address{
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #999;
+}
+div.orderedAddress span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+
+div.orderedTelephone{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 14px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+   
+    padding-right: 3%;
+     padding: 0 3%;
+}
+div.orderedTelephone .telephone{
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #999;
+}
+div.orderedTelephone span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+div.orderedTelephone .tip2{
+	font-size: 12px;
+	color: #ed7119;
+	display: none;
+	float: right;
+}
+div.orderedContact{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 14px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+   
+    padding-right: 0.02rem;
+     padding: 0 3%;
+}
+div.orderedContact .tip3{
+	font-size: 12px;
+	color: #ed7119;
+	display: none;
+	float: right;
+}
+.orderedServide .tip4{
+	font-size: 12px;
+	color: #ed7119;
+	display: none;
+	float: right;
+}
+.tip8{
+	float: right;
+}
+div.orderedContact .contact{
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #999;
+}
+div.orderedContact span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+
+div.orderedCheckCode{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 14px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+   -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+   position: relative;
+    padding-right: 0.02rem;
+     padding: 0 3%;
+}
+div.orderedCheckCode .checkCode{
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #999;
+}
+div.orderedCheckCode span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+div.orderedCheckCode button{
+	position: absolute;
+    top: 28%;
+    right: 3%;
+       padding: 0 10px;
+    height: 35px;
+    font-size: 14px;
+    color: #fff;
+    background: #999;
+    border: 0;
+    border-radius: 0.3rem;
+    
+}
+
+div.orderedServide{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 50px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+    padding-right: 0.02rem;
+    padding: 0 3%;
+    background:#fff url(../img/2.png) no-repeat center right;
+    background-position-x: 97%;
+}
+div.orderedServide .service{
+	font-size: 14px;
+	border: 0;
+	color: #666;
+	font-weight: 600;
+}
+div.orderedServide .serviceType{
+	font-size: 14px;
+	height: 35px;
+	color: #999;
+	line-height: 35px;
+}
+div.orderedServide form{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+
+div.orderedIsConnect{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 50px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+   -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+    padding-right: 0.02rem;
+    padding: 0 3%;
+    position: relative;
+}
+div.orderedIsConnect .IsConnect{
+	height: 65px;
+	line-height: 65px;
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #666;
+	font-weight: 600;
+}
+
+div.orderedIsConnect form{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+div.orderedIsConnect .selectBtn{
+	   position: absolute;
+    right: 3%;
+    background: #15c5ff;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+}
+div.orderedIsConnect .selectBtn:after{
+	content:"";
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	left: 0;
+	top: 0;
+	background: #fff;
+}
+
+
+
+div.orderedWorkarea{
+	position: relative;
+	/*height: 60px;*/
+	background: #fff;
+	font-size: 14px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    margin-top: 1px;
+   
+    padding-right: 0.02rem;
+     padding: 0 3%;
+}
+div.orderedWorkarea .workarea{
+	font-size: 14px;
+	border: 0;
+	width: 70%;
+	color: #999;
+}
+div.orderedWorkarea div span{
+	font-size: 14px;
+	color: #ec7117;
+}
+ .tip7,.tip8{
+ 	font-size: 12px;
+ }
+div.orderedWorkarea span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+	float: right;
+}
+
+div.orderedRemark{
+	position: relative;
+	/*height:60px;*/
+	background: #fff;
+	font-size: 14px;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-content: space-around;
+    -moz-align-content: space-around;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+     -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+   	margin-top: 1px;
+     padding: 0 3%;
+}
+div.orderedRemark .remark{
+	height: 35px;
+	font-size: 14px;
+	border: 0;
+	width: 90%;
+	color: #999;
+}
+div.orderedRemark span{
+	font-size: 14px;
+	color: #666;
+	font-weight: 600;
+}
+div.comfirmOrder{
+	padding: 0 0.5rem;
+    margin-top: 20px;
+    margin-bottom: 30px;
+	
+}
+
+div.comfirmOrder .orderBtn{
+	font-size: 20px;
+    color: #fff;
+    /* background: #15c5ff; */
+    background: #999;
+    border: 0;
+    border-radius: 0.3rem;
+    width: 100%;
+    height: 40px;
+}
+
+
+.order input{
+	position: relative;
+	height: 35px;
+	outline: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	-webkit-user-modify: read-write-plaintext-only;
+}
+@media (min-width: 721px) and (max-width: 1300px) {
+	div.orderedAddress{height: 80px;}
+	span{line-height: 40px;}
+	.order input{height: 45px;}
+	div.orderedIsConnect{height: 80px;}
+	div.comfirmOrder .orderBtn{height: 60px;}
+}
+.orderMask,.yyorderMask{
+	display: none;
+	position: fixed;
+	top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 400;
+    
+}
+
+ .main{
+	width: 80%;
+    height: 145px;
+    text-align: center;
+    background: #fff;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 10px;
+}
+
+ .main p{
+	color: #333;
+    font-size: 14px;
+    margin-top: 5%;
+    line-height: 24px;
+}
+ .main button{
+	width: 24%;
+    height: 24px;
+    position: absolute;
+    left: 37%;
+    bottom: 12%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+   
+}
+
+footer.orderedFooter{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	font-size: 14px;
+	width: 100%;
+	background: #fff;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	 -webkit-box-pack: space-around;
+    -moz-justify-content: space-around;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+	border-top: 1px solid #dddddd;
+	height:57px;
+    z-index: 1;
+}
+footer.orderedFooter a{
+	display: block;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+     -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+footer.orderedFooter dl dt{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	 -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+	 -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+footer.orderedFooter dl dt img{
+	width: 1.8em;
+}
+footer.orderedFooter dl dd{
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+	 -webkit-box-pack: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+	 -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+	margin-top: 5px;
+}
+footer a{
+	text-decoration: none;
+	color: #929292;
+}
+/*三级联动弹出层区域*/
+.form-inline{
+	background: #999;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 14px;
+	display: none;
+	padding-top: 3%;
+	text-align: center;
+	z-index: 100;
+}
+.form-control{
+	    width: 80%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group{
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+label.sr-only {
+    font-size: 14px;
+}
+.form-inline .comfirm{
+	width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    /* line-height: 1.42857143; */
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1rem;
+
+}
+
+/*三级联动弹出层区域结束*/
+
+/*服务类型弹出层*/
+.checkServiceType{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+
+	
+}
+
+
+.typebox { position: fixed; bottom: -100%; left:0; z-index: 400; width:100%;  background-color: #fff; color: #4d525d;display: none;}
+.typebox header { position: relative; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.typebox header h3 { margin: 0 0.335rem; text-align: center; font-size:16px; line-height: 50px; }
+.typebox header .back,
+.typebox header .close { position: absolute; top: 0; width: 25px; height:36px; }
+.typebox header .back { display: none; left: 0; background: url(../img/back.png) no-repeat center;   background-size:0.09rem 0.15rem; }
+.typebox header .close { right: 0; background: url(../img/close-area.png) no-repeat center; background-size: 40% 30%; }
+.typebox article { height: 250px; overflow-y: scroll; }
+.area-list li { padding: .1rem; border-bottom: 1px solid #e2e2e2; text-align: justify; font-size: .14rem; line-height: 0.25rem; }
+@media (min-width: 721px) and (max-width: 1300px) {
+	.typebox { width: 100%; }
+	.typebox header h3 { font-size: 16px; line-height: 52px; }
+	.typebox header .back,
+	.typebox header .close { height: 2.34rem; }
+	.area-list li { padding: 0.06rem; font-size: 14px; line-height: 0.2rem; }
+}
+@media (max-width: 720px) {
+	.typebox { position: fixed; left: 0; width: 100%; margin-left: 0; }
+}
+
+
+
+ .blue{
+	color: blue;
+}
+ .black{
+	color: #555;
+}
+.checkServiceType .comfirm{
+	width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    /* line-height: 1.42857143; */
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 0.2rem;
+
+}
+/*服务类型弹出层结束*/
+
+/*滑动按钮部分*/
+.swraper.flat{
+    width:70px!important;
+	border-radius: 13px;
+	position: absolute;
+    right: 3%;
+    top: 20%;
+}
+.swraper.flat .stoggler .sblob{
+	width: 26px;
+	height: 26px;
+	border-radius: 13px;
+	z-index: 100;
+}
+.slabel-on{
+	background: #14c6ff;
+}
+.slabel-off,.slabel-on{
+	line-height: 26px;
+}
+
+
+
+/*地址弹出层开始*/
+
+.iphone { height: 45px; margin-top: 1px; background:  url(../img/iphonese.png) no-repeat; }
+.browser { position: relative; width: 320px; height: 460px; overflow: hidden;background: #fff; }
+@media (min-width: 721px) and (max-width: 1300px) {
+	.iphone { width: 100%; height: 45px;font-siz}
+	.browser { width: 100%; height: 45px; }
+}
+@media (max-width: 720px) {
+	.iphone { width: 100%;  padding: 0; background: none; }
+	.browser { width: 100%; height: 100%; }
+}
+/*选择地区*/
+.express-area{height: 100%;}
+.express-area a { display: block; height: 100%; background: url(../img/2.png) no-repeat 98% 50%;text-decoration: none;}
+.express-area dl { display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    height: 100%;}
+.express-area dl dt {display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 25%;
+    margin-left: 3%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;
+    font-weight: 600;}
+.express-area dl dd { display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    width: 70%;
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666666;}
+@media (min-width: 721px) and (max-width: 1300px) {
+	.express-area dl dt { font-size: 14px;color: #666;font-weight: 600; }
+	.express-area dl dd { padding-right: .6rem; margin-left: 3rem; font-size: 14px; line-height: .8rem; }
+}
+/*选择地区弹层*/
+.express-area-box { position: fixed; bottom: -100%; left: 0; z-index: 301; width: 320px; background-color: #fff; color: #4d525d;z-index: 10000; }
+.express-area-box header { height:50px;position: relative; border-top: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.express-area-box header h3 { margin: 0 1.675rem; text-align: center; font-size: 16px; line-height: 2.25rem; }
+.express-area-box header .back,
+.express-area-box header .close { position: absolute; top: 0; width: 1.675rem; height: 2.25rem; }
+.express-area-box header .back { display: none; left: 0; background: url(../img/back.png) no-repeat center;   background-size: .45rem .75rem; }
+.express-area-box header .close { right: 0; background: url(../img/close-area.png) no-repeat center; background-size: .675rem .675rem; }
+.express-area-box article { height: 250px; overflow-y: scroll; }
+.area-list li { padding: .5rem; border-bottom: 1px solid #e2e2e2; text-align: justify; font-size: 14px; line-height: 1.5rem; }
+@media (min-width: 721px) and (max-width: 1300px) {
+	.express-area-box { width: 100%; height: 400px; }
+	.express-area-box header h3 { font-size:16px; line-height: 52px; }
+	.express-area-box header .back,
+	.express-area-box header .close { height: 1.7rem; }
+	.area-list li {font-size:14px; }
+}
+@media (max-width: 720px) {
+	.express-area-box { position: fixed; left: 0; width: 100%; margin-left: 0;z-index: 10000;transform: translateZ(200px); }
+}
+/*遮罩层*/
+.mask { display: none; position: fixed; top: 0; left: 0; z-index: 5000; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); }
+@media (max-width: 720px) {
+	.mask { position: fixed; }
+}
+
+/*地址弹出层结束*/
+
+
+@keyframes distIn{
+	from{bottom: -100%;}
+	to{bottom: 0;}
+}
+@-webkit-keyframes distIn{
+	from{bottom: -100%;}
+	to{bottom: 0;}
+}
+@keyframes distOut{
+	from{bottom: 0;}
+	to{bottom: -100%;}
+}
+@-webkit-keyframes distOut{
+	from{bottom: 0;}
+	to{bottom: -100%;}
+}
+.distIn{
+	animation-name: distIn;
+	-webkit-animation-name:distIn ;
+	animation-duration: 300ms;
+	-webkit-animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+	display: block;
+    z-index: 10000;
+}
+.distOut{
+	animation-name: distOut;
+	-webkit-animation-name:distOut ;
+	animation-duration: 300ms;
+	-webkit-animation-duration: 300ms;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+	display: none;
+}
+
+
+
+
+
+
+

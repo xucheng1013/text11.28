@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的预约</title>
+		<link rel="stylesheet" href="../css/myOrder.css" />
+	</head>
+	<body>
+		<div class="myOrder">
+			<p>当前预约:</p>
+			<div class="main1" style="position: relative;">
+				<!--<a class="detail"  href="orderState.html"  style="text-decoration: none;display: block;">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<span class="tip">等待系统确认</span>
+				</a>
+				<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="orderState.html" class="tip" style="text-decoration: none;">等待系统确认</a>
+				</div>-->
+				<!--<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="orderState.html" class="tip" style="text-decoration: none;">等待系统确认</a>
+				</div>
+				<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="orderState.html" class="tip" style="text-decoration: none;">等待系统确认</a>
+				</div>-->
+				
+			</div>
+		</div>
+		<div class="orderRecord">
+			<p>预约记录:</p>
+			<div class="main2" style="position: relative;">
+				<!--<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="#" class="tip" style="text-decoration: none;">已完成</a>
+				</div>
+				<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="#" class="tip" style="text-decoration: none;">已完成</a>
+				</div>
+				<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="#" class="tip" style="text-decoration: none;">已完成</a>
+				</div>
+				<div class="detail">
+					<span>预约时间:2016-07-07 17:23</span><br />
+					<span>预约地址:武汉市江夏区武大园</span>
+					<a href="#" class="tip" style="text-decoration: none;">已完成</a>
+				</div>-->
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/publicJs.js"></script>
+	<script>
+		//取出预约列表
+		var openid=localStorage.getItem("openid");
+		$.ajax({
+			url:"http://192.168.100.17:8080/UAV/weixin/apptmtlist/"+openid,
+			type: "get", 
+			dataType:"json",
+			success: function(msg){
+				
+				console.log(msg);
+				var html1="";
+				var html2="";
+                for (var i = 0; i < msg.result.pendingapptmt.length; i++) {
+                    var obj =msg.result.pendingapptmt[i];
+                   html1 += '<a href="orderState.html?'+obj.id+"?"+encodeURI(obj.appoTime)+"?"+encodeURI(obj.custAddrs)+"?"+obj.ordState+'"  class="detail" style="text-decoration: none;display: block;"><span>预约时间:'+nonestr(obj.appoTime)+'</span><br /><span>预约地址:'+obj.custAddrs+'</span><span class="tip">'+yyorderState(obj.ordState)+'</span></a>'
+                }
+                  $(".main1").html(html1);
+                for (var j = 0; j < msg.result.otheropptmt.length; j++) {
+                    var objo =msg.result.otheropptmt[j];
+                   html2 += '<div class="detail" onclick="details('+objo.id+')"><span>预约时间:'+nonestr(objo.appoTime)+'</span><br /><span>预约地址:'+objo.custAddrs+'</span><a href="#" class="tip" style="text-decoration: none;">'+yyorderState(objo.ordState)+'</a></div>'
+                }
+                
+              $(".main2").html(html2);
+			}, //操作成功后的操作！msg是后台传过来的值
+			error:function(msg){
+				console.log(msg);
+			}
+		}); 
+		
+		function details(id){
+			location.href="./overdetailOrder.html?"+id;
+		}
+	</script>
+</html>
